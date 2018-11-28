@@ -1,0 +1,41 @@
+<%= form_with(model: document, local: true) do |form| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="content field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="files field">
+    <% @document.files.each do |file| %>
+      <div class="file">
+        <%= link_to file.filename, delete_file_attachment_document_url(file), method: :delete, data: { confirm: 'Are you sure?' }%>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="addFiles field">
+    <span class="label"><%= form.label :files %></span>
+    <span class="fileField"><%= form.file_field :files, multiple: true%></span>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

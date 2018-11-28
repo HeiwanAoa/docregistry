@@ -1,0 +1,11 @@
+<div class="mainWrap">
+  <h1 class="viewTitle">All Documents</h1>
+      <% @documents.each do |document| %>
+        <div class="docs">
+          <h1>○<%= link_to document.title, document %></h1>
+          <p><%=h truncate(document.content, :length => 30)  %></p>
+        </div>
+      <% end %>
+  <br>
+  <button class="newDocBtn" type="button" name="newDoc"><h2><%= link_to 'New Document', new_document_path %></h2></button>
+</div>

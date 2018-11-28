@@ -1,0 +1,14 @@
+<div class="mainWrap">
+    <h1 class="viewTitle"><%= @document.title %></h1>
+    <button type="button" name="toDocs"><%= link_to 'Back', documents_path %></button>
+    <p><%= @document.content %></p>
+
+    <div class="files">
+        <% @document.files.each do |file| %>
+            <%= link_to file.filename, rails_blob_path(file, disposition: :attachment)%>
+        <% end %>
+    </div>
+  <button type="button" name="editDoc"><%= link_to 'Edit', edit_document_path(@document) %></button>
+  <button type="button" name="destroyDoc"><%= link_to 'Destroy',
+    @document, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+</div>
